@@ -24,24 +24,24 @@ class List:
                 aux = aux.next_node
 
     def insert_ordered(self, value):
-        node = Node(value)
+        node = Node(value, next_node=None)
 
         if not self.head:
             self.head = node
 
         elif not self.head.next_node:
             if self.head.value < value:
-                self.head.set_next(node)
+                self.head.next_node = node
             else:
                 current_head = self.head
                 self.head = node
-                self.head.set_next(current_head)
+                self.head.next_node = current_head
 
         else:
             aux = self.head
 
             if aux.value > value:
-                node.set_next(aux)
+                node.next_node = aux
                 self.head = node
 
             else:
@@ -49,21 +49,21 @@ class List:
                     aux = aux.next_node
 
                 next = aux.next_node
-                aux.set_next(node)
-                node.set_next(next)
+                aux.next_node = node
+                node.next_node = next
 
     def insert_beginning(self, value):
-        node = Node(value)
+        node = Node(value, next_node=None)
 
         if not self.head:
             self.head = node
 
         else:
-            node.set_next(self.head)
+            node.next_node = self.head
             self.head = node
 
     def insert_end(self, value):
-        node = Node(value)
+        node = Node(value, next_node=None)
 
         if not self.head:
             self.head = node
@@ -77,7 +77,7 @@ class List:
             while aux.next_node:
                 aux = aux.next_node
 
-            aux.set_next(node)
+            aux.next_node = node
 
     def __str__(self):
         displayed = '['

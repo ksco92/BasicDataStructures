@@ -7,7 +7,7 @@ class Stack:
         self.head = None
 
     def push(self, value):
-        node = Node(value)
+        node = Node(value, next_node=None)
 
         if not self.head:
             self.head = node
@@ -15,7 +15,7 @@ class Stack:
         else:
             old_head = self.head
             self.head = node
-            self.head.set_next(old_head)
+            self.head.next_node = old_head
 
     def pop(self):
 

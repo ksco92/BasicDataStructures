@@ -1,11 +1,15 @@
 class Node:
 
-    def __init__(self, value):
+    def __init__(self, value, **kwargs):
         self.value = value
-        self.next_node = None
+        self.kwargs = kwargs
 
-    def set_next(self, node):
-        self.next_node = node
+        for key, value in kwargs.items():
+            setattr(self, key, value)
 
     def __str__(self):
-        return '{value: ' + str(self.value) + ', next_node: ' + str(self.next_node) + '}'
+        main_str = '{value: ' + str(self.value)
+        for key, value in self.kwargs.items():
+            main_str += ', ' + str(key) + ': ' + str(value)
+
+        return main_str

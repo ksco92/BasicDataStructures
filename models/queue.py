@@ -8,18 +8,18 @@ class Queue:
         self.tail = None
 
     def receive(self, value):
-        node = Node(value)
+        node = Node(value, next_node=None)
 
         if not self.head and not self.tail:
             self.head = node
             self.tail = node
 
         elif self.head == self.tail:
-            self.head.set_next(node)
+            self.head.next_node = node
             self.tail = node
 
         else:
-            self.tail.set_next(node)
+            self.tail.next_node = node
             self.tail = node
 
     def send(self):
