@@ -1,7 +1,8 @@
 from models.list import List
 from models.queue import Queue
 from models.stack import Stack
-from views import print_all_structures, invalid_selection_view
+from views import print_all_structures, invalid_selection_view, repeated_value, not_in_list
+from utils.exists import exists
 
 
 class StructureController:
@@ -11,7 +12,8 @@ class StructureController:
         self.main_queue = Queue()
         self.main_stack = Stack()
 
-    def add_to_structure(self, value, structure):
+    @staticmethod
+    def add_to_structure(value, structure):
         if type(structure).__name__ == 'List':
             structure.insert_ordered(value)
 
@@ -24,7 +26,8 @@ class StructureController:
         else:
             raise ValueError('Provided structure has an invalid type.')
 
-    def remove_from_structure(self, structure, value=None):
+    @staticmethod
+    def remove_from_structure(structure, value=None):
         if type(structure).__name__ == 'List' and value:
             pass
 
@@ -34,7 +37,8 @@ class StructureController:
         elif type(structure).__name__ == 'Queue' and not value:
             structure.send()
 
-    def is_selection_valid(self, selection):
+    @staticmethod
+    def is_selection_valid(selection):
         try:
             int(selection)
             return True
@@ -44,16 +48,25 @@ class StructureController:
     def main_menu_selection(self, selection, extra_value=None):
 
         if selection == 1:
-            self.main_list.insert_ordered(extra_value)
+            if exists(extra_value, self.main_list):
+                repeated_value()
+            else:
+                self.main_list.insert_ordered(extra_value)
 
         elif selection == 2:
-            self.main_stack.push(extra_value)
+            if exists(extra_value, self.main_stack):
+                repeated_value()
+            else:
+                self.main_stack.push(extra_value)
 
         elif selection == 3:
-            self.main_queue.receive(extra_value)
+            if exists(extra_value, self.main_queue):
+                repeated_value()
+            else:
+                self.main_queue.receive(extra_value)
 
         elif selection == 4:
-            pass
+            self.main_list.remove(extra_value)
 
         elif selection == 5:
             self.main_list.insert_ordered(self.main_queue.send())
@@ -68,9 +81,27 @@ class StructureController:
             self.main_queue.receive(self.main_stack.pop())
 
         elif selection == 9:
-            print_all_structures(self.main_list, self.main_queue, self.main_stack)
+            if not exists(extra_value, self.main_list):
+                not_in_list()
+            elif exists(extra_value, self.main_queue):
+                repeated_value()
+            else:
+                self.main_list.remove(extra_value)
+                self.main_queue.receive(extra_value)
 
         elif selection == 10:
+            if not exists(extra_value, self.main_list):
+                not_in_list()
+            elif exists(extra_value, self.main_stack):
+                repeated_value()
+            else:
+                self.main_list.remove(extra_value)
+                self.main_stack.push(extra_value)
+
+        elif selection == 11:
+            print_all_structures(self.main_list, self.main_queue, self.main_stack)
+
+        elif selection == 12:
             self.main_list = List()
             self.main_queue = Queue()
             self.main_stack = Stack()

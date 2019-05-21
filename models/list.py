@@ -6,6 +6,23 @@ class List:
     def __init__(self):
         self.head = None
 
+    def remove(self, value):
+        aux = self.head
+        while aux:
+            if aux.value == value:
+                if aux == self.head:
+                    self.head = aux.next_node
+                    return
+                else:
+                    previous = self.head
+                    while previous.next_node != aux:
+                        previous = previous.next_node
+                    previous.next_node = aux.next_node
+                    return
+
+            else:
+                aux = aux.next_node
+
     def insert_ordered(self, value):
         node = Node(value)
 
