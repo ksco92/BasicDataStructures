@@ -2,14 +2,14 @@ class Node:
 
     def __init__(self, value, **kwargs):
         self.value = value
-        self.kwargs = kwargs
 
         for key, value in kwargs.items():
             setattr(self, key, value)
 
     def __str__(self):
         main_str = '{value: ' + str(self.value)
-        for key, value in self.kwargs.items():
-            main_str += ', ' + str(key) + ': ' + str(value)
+        for attribute in [a for a in dir(self) if not a.startswith('__') and not a.startswith('value')]:
+            main_str += ', ' + str(attribute) + ': ' + str(getattr(self, attribute))
+        main_str += '}'
 
         return main_str
