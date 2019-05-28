@@ -28,3 +28,16 @@ class BinarySearchTree:
             self.__add_element_recursive(parent.left, value)
         else:
             parent.left = Node(value, left=None, right=None)
+
+    # ask about this condition
+    def is_leaf(self):
+        if not self.root or not self.root.left or not self.root.right:
+            return False
+        else:
+            return True
+
+    def is_empty(self):
+        if not self.root:
+            return True
+        else:
+            return False

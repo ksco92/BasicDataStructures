@@ -2,7 +2,7 @@ from models.list import List
 from models.queue import Queue
 from models.stack import Stack
 from views import print_all_structures, invalid_selection_view, repeated_value, not_in_list
-from utils.exists import exists
+from generic_utils.exists import exists
 
 
 class StructureController:
