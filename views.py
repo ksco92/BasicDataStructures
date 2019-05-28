@@ -15,8 +15,9 @@ def main_menu_view():
     print('8. Move element from the stack to the queue.')
     print('9. Move element from list to queue.')
     print('10. Move element from list to stack.')
-    print('11. Print all structures.')
-    print('12. Reset all structures.')
+    print('11. Add an element to the tree.')
+    print('12. Print all structures.')
+    print('13. Reset all structures.')
     return input('Select an option: ')
 
 
@@ -40,10 +41,11 @@ def invalid_selection_view():
     print('Invalid selection, please choose an option from the menu.')
 
 
-def print_all_structures(list, queue, stack):
+def print_all_structures(list, queue, stack, tree):
     print('List: ' + str(list))
     print('Queue: ' + str(queue))
     print('Stack: ' + str(stack))
+    print('Tree: ' + str(tree))
 
 
 def repeated_value():
