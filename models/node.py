@@ -8,7 +8,7 @@ class Node:
 
     def __str__(self):
         main_str = '{value: ' + str(self.value)
-        for attribute in [a for a in dir(self) if not a.startswith('__') and not a.startswith('value')]:
+        for attribute in [a for a in dir(self) if not a.startswith('__') and a not in ('value', 'parent')]:
             main_str += ', ' + str(attribute) + ': ' + str(getattr(self, attribute))
         main_str += '}'
 
