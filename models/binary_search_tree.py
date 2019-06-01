@@ -88,8 +88,8 @@ class BinarySearchTree:
                 self.left_rotate(node)
             else:
                 self.left_rotate(node)
-        elif node.bf < 0:
-            if node.left.bf > 0:
+        elif node.balance_factor < 0:
+            if node.left.balance_factor > 0:
                 self.left_rotate(node.left)
                 self.right_rotate(node)
             else:
@@ -149,5 +149,31 @@ class BinarySearchTree:
             main_str += str(node.value) + ' - '
             main_str += self.__pre_order_recursive(node.left)
             main_str += self.__pre_order_recursive(node.right)
+
+        return main_str
+
+    def in_order(self):
+        return self.__in_order_recursive(self.root)
+
+    def __in_order_recursive(self, node):
+        main_str = ''
+
+        if node:
+            main_str += self.__in_order_recursive(node.left)
+            main_str += str(node.value) + ' - '
+            main_str += self.__in_order_recursive(node.right)
+
+        return main_str
+
+    def post_order(self):
+        return self.__post_order_recursive(self.root)
+
+    def __post_order_recursive(self, node):
+        main_str = ''
+
+        if node:
+            main_str += self.__post_order_recursive(node.left)
+            main_str += self.__post_order_recursive(node.right)
+            main_str += str(node.value) + ' - '
 
         return main_str

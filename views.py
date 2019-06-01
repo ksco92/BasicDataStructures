@@ -16,8 +16,9 @@ def main_menu_view():
     print('9. Move element from list to queue.')
     print('10. Move element from list to stack.')
     print('11. Add an element to the tree.')
-    print('12. Print all structures.')
-    print('13. Reset all structures.')
+    print('12. Show tree orders.')
+    print('13. Print all structures.')
+    print('14. Reset all structures.')
     return input('Select an option: ')
 
 
@@ -50,3 +51,9 @@ def print_all_structures(list, queue, stack, tree):
 
 def repeated_value():
     print('That value already exists in the selected structure, values can\'t be repeated.')
+
+
+def print_tree_orders(tree):
+    print('Pre-Order: ' + tree.pre_order())
+    print('Post-Order: ' + tree.post_order())
+    print('In-Order: ' + tree.in_order())

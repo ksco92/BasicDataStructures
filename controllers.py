@@ -2,7 +2,7 @@ from models.list import List
 from models.queue import Queue
 from models.stack import Stack
 from models.binary_search_tree import BinarySearchTree
-from views import print_all_structures, invalid_selection_view, repeated_value, not_in_list
+from views import print_all_structures, invalid_selection_view, repeated_value, not_in_list, print_tree_orders
 from generic_utils.exists import exists
 
 
@@ -107,9 +107,12 @@ class StructureController:
                 self.main_tree.add_element(extra_value)
 
         elif selection == 12:
-            print_all_structures(self.main_list, self.main_queue, self.main_stack, self.main_tree)
+            print_tree_orders(self.main_tree)
 
         elif selection == 13:
+            print_all_structures(self.main_list, self.main_queue, self.main_stack, self.main_tree)
+
+        elif selection == 14:
             self.main_list = List()
             self.main_queue = Queue()
             self.main_stack = Stack()
