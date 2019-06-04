@@ -1,16 +1,20 @@
 from models.node import Node
 
 
-class BinarySearchTree:
+class AVLTree:
 
     def __init__(self):
         self.root = None
 
     def __str__(self):
-        return self.__str_recursive(self.root)
+        if self.root:
+            return self.__str_recursive(self.root)
+        else:
+            return '{}'
 
     def __str_recursive(self, node):
         main_str = '\n' + ('\t' * self.get_level(node)) + 'Value: ' + str(node.value) + '\n'
+        main_str += ('\t' * self.get_level(node)) + 'Balance Factor: ' + str(node.balance_factor) + '\n'
 
         if node.left:
             main_str += ('\t' * self.get_level(node)) + 'Left: ' + self.__str_recursive(node.left) + '\n'

@@ -57,3 +57,7 @@ def print_tree_orders(tree):
     print('Pre-Order: ' + tree.pre_order())
     print('Post-Order: ' + tree.post_order())
     print('In-Order: ' + tree.in_order())
+
+
+def int_only_tree_error():
+    print('This tree supports only integers.')

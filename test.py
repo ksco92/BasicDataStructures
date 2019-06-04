@@ -1,5 +1,5 @@
-from models.binary_search_tree import BinarySearchTree
-b = BinarySearchTree()
+from models.alv_tree import AVLTree
+b = AVLTree()
 b.add_element(5)
 b.add_element(3)
 b.add_element(8)

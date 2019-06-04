@@ -1,9 +1,10 @@
+from generic_utils.exists import exists
+from models.alv_tree import AVLTree
 from models.list import List
 from models.queue import Queue
 from models.stack import Stack
-from models.binary_search_tree import BinarySearchTree
-from views import print_all_structures, invalid_selection_view, repeated_value, not_in_list, print_tree_orders
-from generic_utils.exists import exists
+from views import print_all_structures, invalid_selection_view, repeated_value, not_in_list, print_tree_orders, \
+    int_only_tree_error
 
 
 class StructureController:
@@ -12,7 +13,7 @@ class StructureController:
         self.main_list = List()
         self.main_queue = Queue()
         self.main_stack = Stack()
-        self.main_tree = BinarySearchTree()
+        self.main_tree = AVLTree()
 
     @staticmethod
     def add_to_structure(value, structure):
@@ -101,10 +102,15 @@ class StructureController:
                 self.main_stack.push(extra_value)
 
         elif selection == 11:
-            if exists(extra_value, self.main_tree):
-                repeated_value()
-            else:
-                self.main_tree.add_element(extra_value)
+            try:
+                extra_value = int(extra_value)
+                if exists(extra_value, self.main_tree):
+                    repeated_value()
+                else:
+                    self.main_tree.add_element(extra_value)
+
+            except ValueError:
+                int_only_tree_error()
 
         elif selection == 12:
             print_tree_orders(self.main_tree)
@@ -116,6 +122,7 @@ class StructureController:
             self.main_list = List()
             self.main_queue = Queue()
             self.main_stack = Stack()
+            self.main_tree = AVLTree()
 
         else:
             invalid_selection_view()

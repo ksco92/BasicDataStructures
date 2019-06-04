@@ -1,4 +1,4 @@
-from models.binary_search_tree import BinarySearchTree
+from models.alv_tree import AVLTree
 from models.list import List
 from models.queue import Queue
 from models.stack import Stack
@@ -15,7 +15,7 @@ def exists(value, structure):
 
         return False
 
-    elif isinstance(structure, BinarySearchTree):
+    elif isinstance(structure, AVLTree):
         return __exists_binary_tree_recursive(structure.root, value)
 
 
