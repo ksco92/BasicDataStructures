@@ -1,5 +1,5 @@
 from generic_utils.exists import exists
-from models.alv_tree import AVLTree
+from models.avl_tree import AVLTree
 from models.list import List
 from models.queue import Queue
 from models.stack import Stack

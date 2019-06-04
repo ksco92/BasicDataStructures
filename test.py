@@ -1,4 +1,4 @@
-from models.alv_tree import AVLTree
+from models.avl_tree import AVLTree
 b = AVLTree()
 b.add_element(5)
 b.add_element(3)
