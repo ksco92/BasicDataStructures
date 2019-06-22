@@ -9,7 +9,7 @@ if __name__ == '__main__':
         user_selection = main_menu_view()
         if controller.is_selection_valid(user_selection):
             user_selection = int(user_selection)
-            if user_selection in (1, 2, 3, 11, ):
+            if user_selection in (1, 2, 3, 11, 13, ):
                 controller.main_menu_selection(user_selection, extra_value=add_value_view())
             elif user_selection in (4, ):
                 controller.main_menu_selection(user_selection, extra_value=remove_value_view())
